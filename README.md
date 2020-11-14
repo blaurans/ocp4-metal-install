@@ -1,4 +1,5 @@
-# OpenShift 4 Bare Metal Install - User Provisioned Infrastructure (UPI)
+# OKD 4 Bare Metal Install - User Provisioned Infrastructure (UPI)
+Forked from https://github.com/ryanhay/ocp4-metal-install
 
 - [OpenShift 4 Bare Metal Install - User Provisioned Infrastructure (UPI)](#openshift-4-bare-metal-install---user-provisioned-infrastructure-upi)
   - [Architecture Diagram](#architecture-diagram)
@@ -23,18 +24,13 @@
 ## Download Software
 
 1. Download [CentOS 8 x86_64 image](https://www.centos.org/centos-linux/)
-1. Login to [RedHat OpenShift Cluster Manager](https://cloud.redhat.com/openshift)
-1. Select 'Create Cluster' from the 'Clusters' navigation menu
-1. Select 'RedHat OpenShift Container Platform'
-1. Select 'Run on Bare Metal'
 1. Download the following files:
 
-   - Openshift Installer for Linux
-   - Pull secret
-   - Command Line Interface for Linux and your workstations OS
-   - Red Hat Enterprise Linux CoreOS (RHCOS)
-     - rhcos-X.X.X-x86_64-metal.x86_64.raw.gz
-     - rhcos-X.X.X-x86_64-installer.x86_64.iso
+   - OKD Installer for Linux https://github.com/openshift/okd/releases  
+   - Pull secret  https://cloud.redhat.com/openshift/install/pull-secret  
+   - Command Line Interface for Linux and your workstations OS https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/  
+   - Fedora CoreOS (FCOS) https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable  
+
 
 ## Prepare the 'Bare Metal' environment
 

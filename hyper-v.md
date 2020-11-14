@@ -2,7 +2,7 @@ Create a Private vSwitch named OKD
 Create an External vSwitch named Bridge  
 ``` Powershell
 $VMName = 'P-OKD-SVC-001'
-$InstallMedia = 'C:\Temp\CentOS-8.2.2004-x86_64-boot.iso'
+$InstallMedia = 'C:\Temp\CentOS-8.2.2004-x86_64-minimal.iso'
 $Switch = 'Bridge'
 $Switch2 = 'OKD'
 New-VM -Name $VMName -MemoryStartupBytes 4GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 120GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch

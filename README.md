@@ -35,6 +35,7 @@ Forked from https://github.com/ryanhay/ocp4-metal-install
 ## Prepare the 'Bare Metal' environment
 
 > VMware ESXi used in this guide
+You can use esxcli to automate VM creation https://my.vmware.com/group/vmware/get-download?downloadGroup=ESXCLI-700
 
 1. Copy the CentOS 8 iso to an ESXi datastore
 1. Create a new Port Group called 'OCP' under Networking

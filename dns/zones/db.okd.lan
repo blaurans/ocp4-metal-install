@@ -1,0 +1,41 @@
+$TTL    604800
+@       IN      SOA     p-okd-svc-001.okd.lan. contact.okd.lan (
+                  1     ; Serial
+             604800     ; Refresh
+              86400     ; Retry
+            2419200     ; Expire
+             604800     ; Minimum
+)
+        IN      NS      p-okd-svc-001
+
+p-okd-svc-001.okd.lan.          IN      A       192.168.22.1
+
+; Temp Bootstrap Node
+p-okd-boot-001.lab.okd.lan.        IN      A      192.168.22.200
+
+; Control Plane Nodes
+p-okd-mast-001.lab.okd.lan.         IN      A      192.168.22.201
+p-okd-mast-002.lab.okd.lan.         IN      A      192.168.22.202
+p-okd-mast-003.lab.okd.lan.         IN      A      192.168.22.203
+
+; Worker Nodes
+p-okd-wrk-001.lab.okd.lan.        IN      A      192.168.22.211
+p-okd-wrk-OO2.lab.okd.lan.        IN      A      192.168.22.212
+
+; OpenShift Internal - Load balancer
+api.lab.okd.lan.        IN    A    192.168.22.1
+api-int.lab.okd.lan.    IN    A    192.168.22.1
+*.apps.lab.okd.lan.     IN    A    192.168.22.1
+
+; ETCD Cluster
+etcd-0.lab.okd.lan.    IN    A     192.168.22.201
+etcd-1.lab.okd.lan.    IN    A     192.168.22.202
+etcd-2.lab.okd.lan.    IN    A     192.168.22.203
+
+; OpenShift Internal SRV records (cluster name = lab)
+_etcd-server-ssl._tmast.lab.okd.lan.    86400     IN    SRV     0    10    2380    etcd-0.lab
+_etcd-server-ssl._tmast.lab.okd.lan.    86400     IN    SRV     0    10    2380    etcd-1.lab
+_etcd-server-ssl._tmast.lab.okd.lan.    86400     IN    SRV     0    10    2380    etcd-2.lab
+
+oauth-openshift.apps.lab.okd.lan.     IN     A     192.168.22.1
+console-openshift-console.apps.lab.okd.lan.     IN     A     192.168.22.1

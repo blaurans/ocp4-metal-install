@@ -34,11 +34,11 @@ Forked from https://github.com/ryanhay/ocp4-metal-install
 
 ## Prepare the 'Bare Metal' environment
 
-> VMware ESXi used in this guide
-You can use esxcli to automate VM creation https://my.vmware.com/group/vmware/get-download?downloadGroup=ESXCLI-700
+> Hyper-V used in this guide
+You can use hyper-v.md to automate creation
 
 1. Copy the CentOS 8 iso to an ESXi datastore
-1. Create a new Port Group called 'OCP' under Networking
+1. Create a new Port Group called 'OKD' under Networking
 1. Create 3 Control Plane virtual machines with minimum settings:
    - Name: ocp-cp-# (Example ocp-cp-1)
    - 4vcpu

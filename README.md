@@ -85,10 +85,10 @@ You can use hyper-v.md to automate creation
 1. Move the files downloaded from the RedHat Cluster Manager site to the ocp-svc node
 
    ```bash
-   scp ~/Downloads/openshift-install-linux.tar.gz ~/Downloads/openshift-client-linux.tar.gz ~/Downloads/rhcos-x.x.x-x86_64-installer.x86_64.iso root@{ocp-svc_IP_address}:/root/
+   scp openshift-client-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz openshift-install-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz fedora-coreos-32.20201018.3.0-live.x86_64.iso   root@{ocp-svc_IP_address}:/tmp/
    ```
 
-1. SSH to the ocp-svc vm
+1. SSH to the p-okd-svc-001 vm
 
    ```bash
    ssh root@{ocp-svc_IP_address}
@@ -97,7 +97,7 @@ You can use hyper-v.md to automate creation
 1. Extract Client tools and copy them to `/usr/local/bin`
 
    ```bash
-   tar xvf openshift-client-linux.tar.gz
+   tar zxvf openshift-client-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz
    mv oc kubectl /usr/local/bin
    ```
 
@@ -111,13 +111,13 @@ You can use hyper-v.md to automate creation
 1. Extract the OpenShift Installer
 
    ```bash
-   tar xvf openshift-install-linux.tar.gz
+   tar zxvf openshift-install-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz
    ```
 
 1. Update CentOS so we get the latest packages for each of the services we are about to install
 
    ```bash
-   dnf update
+   dnf update -y
    ```
 
 1. Install Git
@@ -126,10 +126,10 @@ You can use hyper-v.md to automate creation
    dnf install git -y
    ```
 
-1. Download [config files](https://github.com/ryanhay/ocp4-metal-install) for each of the services
+1. Download [config files](https://github.com/blaurans/ocp4-metal-install) for each of the services
 
    ```bash
-   git clone https://github.com/ryanhay/ocp4-metal-install
+   git clone https://github.com/blaurans/ocp4-metal-install
    ```
 
 1. OPTIONAL: Create a file '~/.vimrc' and paste the following (this helps with editing in vim, particularly yaml files):

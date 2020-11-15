@@ -494,7 +494,12 @@ You can use hyper-v.md to automate creation
    # Each of the Worker Nodes - p-okd-wrk-00x
    coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/fcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/worker.ign
    ```
-
+Alternate version :
+```bash
+coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!,qster:ign
+coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!zorker:ign
+coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!bootstrqp:ign
+```
 ## Monitor the Bootstrap Process
 
 1. You can monitor the bootstrap process from the ocp-svc host at different log levels (debug, error, info)

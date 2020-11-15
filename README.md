@@ -148,7 +148,7 @@ You can use hyper-v.md to automate creation
    export KUBE_EDITOR="vim"
    ```
 
-1. Set a Static IP for OCP network interface `nmtui-edit ens224` or edit `/etc/sysconfig/network-scripts/ifcfg-ens224`
+1. Set a Static IP for OCP network interface `nmtui-edit eth1` or edit `/etc/sysconfig/network-scripts/ifcfg-eth1`
 
    - **Address**: 192.168.22.1
    - **DNS Server**: 127.0.0.1
@@ -156,15 +156,15 @@ You can use hyper-v.md to automate creation
    - Never use this network for default route
    - Automatically connect
 
-   > If changes arent applied automatically you can bounce the NIC with `nmcli connection down ens224` and `nmcli connection up ens224`
+   > If changes arent applied automatically you can bounce the NIC with `nmcli connection down eth1` and `nmcli connection up eth1`
 
 1. Setup firewalld
 
    Create **internal** and **external** zones
 
    ```bash
-   nmcli connection modify ens224 connection.zone internal
-   nmcli connection modify ens192 connection.zone external
+   nmcli connection modify eth1 connection.zone internal
+   nmcli connection modify eth0 connection.zone external
    ```
 
    View zones:

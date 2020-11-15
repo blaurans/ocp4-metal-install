@@ -85,7 +85,7 @@ You can use hyper-v.md to automate creation
 1. Move the files downloaded from the RedHat Cluster Manager site to the ocp-svc node
 
    ```bash
-   scp openshift-client-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz openshift-install-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz fedora-coreos-32.20201018.3.0-live.x86_64.iso   root@{ocp-svc_IP_address}:/tmp/
+   scp openshift-client-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz openshift-install-linux-4.5.0-0.okd-2020-10-15-235428.tar.gz fedora-coreos-32.20201018.3.0-live.x86_64.iso root@{ocp-svc_IP_address}:/tmp/
    ```
 
 1. SSH to the p-okd-svc-001 vm
@@ -328,7 +328,7 @@ You can use hyper-v.md to automate creation
    Copy HAProxy config
 
    ```bash
-   \cp ~/ocp4-metal-install/haproxy.cfg /etc/haproxy/haproxy.cfg
+   \cp ./ocp4-metal-install/haproxy.cfg /etc/haproxy/haproxy.cfg
    ```
 
    Configure the Firewall
@@ -408,13 +408,13 @@ You can use hyper-v.md to automate creation
 1. Create an install directory
 
    ```bash
-   mkdir ~/ocp-install
+   mkdir ./okd-install
    ```
 
 1. Copy the install-config.yaml included in the clones repository to the install directory
 
    ```bash
-   cp ~/ocp4-metal-install/install-config.yaml ~/ocp-install
+   cp ./ocp4-metal-install/install-config.yaml ./okd-install
    ```
 
 1. Update the install-config.yaml with your own pull-secret and ssh key.
@@ -423,13 +423,13 @@ You can use hyper-v.md to automate creation
    - Line 24 should contain the contents of your '~/.ssh/id_rsa.pub'
 
    ```bash
-   vim ~/ocp-install/install-config.yaml
+   vim ./okd-install/install-config.yaml
    ```
 
 1. Generate Kubernetes manifest files
 
    ```bash
-   ~/openshift-install create manifests --dir ~/ocp-install
+   ./openshift-install create manifests --dir ./okd-install
    ```
 
    > A warning is shown about making the control plane nodes schedulable. It is up to you if you want to run workloads on the Control Plane nodes. If you dont want to you can disable this with:
@@ -439,7 +439,7 @@ You can use hyper-v.md to automate creation
    Generate the Ignition config and Kubernetes auth files
 
    ```bash
-   ~/openshift-install create ignition-configs --dir ~/ocp-install/
+   ./openshift-install create ignition-configs --dir ./okd-install/
    ```
 
 1. Create a hosting directory to serve the configuration files for the OpenShift booting process
@@ -451,13 +451,13 @@ You can use hyper-v.md to automate creation
 1. Copy all generated install files to the new web server directory
 
    ```bash
-   cp -R ~/ocp-install/* /var/www/html/ocp4
+   cp -R ./okd-install/* /var/www/html/ocp4
    ```
 
 1. Move the Core OS image to the web server directory (later you need to type this path multiple times so it is a good idea to shorten the name)
 
    ```bash
-   mv ~/rhcos-X.X.X-x86_64-metal.x86_64.raw.gz /var/www/html/ocp4/rhcos
+   mv ./fedora-coreos-32.20201018.3.0-metal.x86_64.raw.xz /var/www/html/ocp4/fcos 
    ```
 
 1. Change ownership and permissions of the web server directory
@@ -476,23 +476,23 @@ You can use hyper-v.md to automate creation
 
 ## Deploy OpenShift
 
-1. Power on the ocp-bootstrap host and ocp-cp-\# hosts and select 'Tab' to enter boot configuration. Enter the following configuration:
+1. Power on the p-okd-boot-001 host and p-okd-mast-00x hosts and select 'Tab' to enter boot configuration. Enter the following configuration:
 
    ```bash
-   # Bootstrap Node - ocp-bootstrap
-   coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/rhcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/bootstrap.ign
+   # Bootstrap Node - p-okd-boot-001
+   coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/fcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/bootstrap.ign
    ```
 
    ```bash
-   # Each of the Control Plane Nodes - ocp-cp-\#
-   coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/rhcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/master.ign
+   # Each of the Control Plane Nodes - p-okd-mast-00x
+   coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/fcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/master.ign
    ```
 
-1. Power on the ocp-w-\# hosts and select 'Tab' to enter boot configuration. Enter the following configuration:
+1. Power on the p-okd-wrk-00x hosts and select 'Tab' to enter boot configuration. Enter the following configuration:
 
    ```bash
-   # Each of the Worker Nodes - ocp-w-\#
-   coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/rhcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/worker.ign
+   # Each of the Worker Nodes - p-okd-wrk-00x
+   coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/fcos coreos.inst.ignition_url=http://192.168.22.1:8080/ocp4/worker.ign
    ```
 
 ## Monitor the Bootstrap Process
@@ -500,7 +500,7 @@ You can use hyper-v.md to automate creation
 1. You can monitor the bootstrap process from the ocp-svc host at different log levels (debug, error, info)
 
    ```bash
-   ~/openshift-install --dir ~/ocp-install wait-for bootstrap-complete --log-level=debug
+   ./openshift-install --dir ./okd-install wait-for bootstrap-complete --log-level=debug
    ```
 
 1. Once bootstrapping is complete the ocp-boostrap node [can be removed](#remove-the-bootstrap-node)

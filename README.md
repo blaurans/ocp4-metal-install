@@ -152,7 +152,7 @@ You can use hyper-v.md to automate creation
 
    - **Address**: 192.168.22.1
    - **DNS Server**: 127.0.0.1
-   - **Search domain**: ocp.lan
+   - **Search domain**: okd.lan
    - Never use this network for default route
    - Automatically connect
 

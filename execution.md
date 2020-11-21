@@ -81,7 +81,7 @@ $InstallMedia = 'C:\Temp\fedora-coreos-32.20201018.3.0-live.x86_64.iso'
 $Switch = 'OKD'
 New-VM -Name $VMName -MemoryStartupBytes 4GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
 Set-VMProcessor -VMName $VMName -count 2
-Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 4GB -MinimumBytes 1GB
+Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 4GB -MinimumBytes 1GB
 Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
 Set-VM -VMName $VMName -CheckpointType disabled
 Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )

@@ -33,7 +33,7 @@ Remove-VM -Name "$VMName" -Force
 Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
 
 ```
-# Nettoyage de l'install precedente
+# Nettoyage de l'install precedente (optionnel)
 ```bash
 rm -rf /tmp/version45GA
 rm -rf /var/www/html/version45GA

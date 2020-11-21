@@ -1,4 +1,31 @@
 A executer quand la machine p-okd-svc-001 est déjà crée
+# Nettoyage des VM precedentes (optionnel)
+```powershell
+$VMName = 'P-OKD-BOOT-001'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-MAST-001'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-MAST-002'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-MAST-003'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-WRK-001'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-WRK-002'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+```
 # Creation des VM
 ## Sur T30.  
 ```powershell

@@ -1,9 +1,11 @@
 A executer quand la machine p-okd-svc-001 est déjà crée
 # Preparation des hotes Hyper-V
+```batch
 md c:\temp
 md c:\vm-machine
 net share temp=c:\temp /grant:everyone,change
 net share vm-machine=c:\vm-machine /grant:everyone,change
+```
 # Nettoyage des VM precedentes (optionnel)
 ```powershell
 $VMName = 'P-OKD-BOOT-001'

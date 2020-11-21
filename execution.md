@@ -1,4 +1,9 @@
 A executer quand la machine p-okd-svc-001 est déjà crée
+# Preparation des hotes Hyper-V
+md c:\temp
+md c:\vm-machine
+net share temp=c:\temp /grant:everyone,change
+net share vm-machine=c:\vm-machine /grant:everyone,change
 # Nettoyage des VM precedentes (optionnel)
 ```powershell
 $VMName = 'P-OKD-BOOT-001'
@@ -9,19 +14,19 @@ $VMName = 'P-OKD-MAST-001'
 Remove-VM -Name "$VMName" -Force
 Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
 
-$VMName = 'P-OKD-MAST-002'
-Remove-VM -Name "$VMName" -Force
-Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
-
-$VMName = 'P-OKD-MAST-003'
-Remove-VM -Name "$VMName" -Force
-Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
-
 $VMName = 'P-OKD-WRK-001'
 Remove-VM -Name "$VMName" -Force
 Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
 
 $VMName = 'P-OKD-WRK-002'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-MAST-002'
+Remove-VM -Name "$VMName" -Force
+Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
+
+$VMName = 'P-OKD-MAST-003'
 Remove-VM -Name "$VMName" -Force
 Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
 
@@ -52,11 +57,35 @@ $Switch = 'OKD'
 New-VM -Name $VMName -MemoryStartupBytes 8GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
 Set-VM -VMName $VMName -CheckpointType disabled
 Set-VMProcessor -VMName $VMName -count 2
-Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 16GB -MinimumBytes 1GB
+Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 18GB -MinimumBytes 1GB
 #Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 0
 Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
 Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
 Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:03
+
+$VMName = 'P-OKD-WRK-001'
+$InstallMedia = 'C:\Temp\fedora-coreos-32.20201018.3.0-live.x86_64.iso'
+$Switch = 'OKD'
+New-VM -Name $VMName -MemoryStartupBytes 4GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
+Set-VMProcessor -VMName $VMName -count 2
+Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
+Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 4GB -MinimumBytes 1GB
+Set-VM -VMName $VMName -CheckpointType disabled
+Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
+Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:06
+
+$VMName = 'P-OKD-WRK-002'
+$InstallMedia = 'C:\Temp\fedora-coreos-32.20201018.3.0-live.x86_64.iso'
+$Switch = 'OKD'
+New-VM -Name $VMName -MemoryStartupBytes 4GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
+Set-VMProcessor -VMName $VMName -count 2
+Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 4GB -MinimumBytes 1GB
+Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
+Set-VM -VMName $VMName -CheckpointType disabled
+Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
+Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:07
+
+
 ```
 ## Sur Core i5.
 ```powershell
@@ -83,29 +112,6 @@ Set-VM -VMName $VMName -CheckpointType disabled
 Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
 Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
 Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:05
-
-$VMName = 'P-OKD-WRK-001'
-$InstallMedia = 'C:\Temp\fedora-coreos-32.20201018.3.0-live.x86_64.iso'
-$Switch = 'OKD'
-New-VM -Name $VMName -MemoryStartupBytes 2GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
-Set-VMProcessor -VMName $VMName -count 2
-Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
-Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 4GB -MinimumBytes 1GB
-Set-VM -VMName $VMName -CheckpointType disabled
-Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
-Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:06
-
-$VMName = 'P-OKD-WRK-002'
-$InstallMedia = 'C:\Temp\fedora-coreos-32.20201018.3.0-live.x86_64.iso'
-$Switch = 'OKD'
-New-VM -Name $VMName -MemoryStartupBytes 2GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
-Set-VMProcessor -VMName $VMName -count 2
-Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 4GB -MinimumBytes 1GB
-Add-VMDvdDrive -VMName $VMName -Path $InstallMedia
-Set-VM -VMName $VMName -CheckpointType disabled
-Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
-Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:07
-
 
 ```
 # Generation des fichiers de configuration

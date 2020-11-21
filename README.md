@@ -541,7 +541,7 @@ coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_
 1. Setup 'oc' and 'kubectl' clients on the ocp-svc machine
 
    ```bash
-   export KUBECONFIG=~/ocp-install/auth/kubeconfig
+   export KUBECONFIG=./auth/kubeconfig
    # Test auth by viewing cluster nodes
    oc get nodes
    ```

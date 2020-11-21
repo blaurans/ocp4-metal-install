@@ -123,6 +123,7 @@ mkdir /tmp/version45GA
 cd /tmp/version45GA
 wget https://github.com/openshift/okd/releases/download/4.5.0-0.okd-2020-07-14-153706-ga/openshift-install-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 tar zxvf openshift-install-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
+rm -f op*.gz
 git clone https://github.com/blaurans/ocp4-metal-install
 cp ../install-config.yaml .
 ./openshift-install create ignition-configs --dir .

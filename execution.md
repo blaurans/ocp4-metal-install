@@ -40,8 +40,8 @@ Remove-Item -Path "C:\vm-machine\$VMName" -Recurse
 ```
 # Nettoyage de l'install precedente (optionnel)
 ```bash
-rm -rf /tmp/version45GA
-rm -rf /var/www/html/version45GA
+rm -rf /tmp/version46GA
+rm -rf /var/www/html/version46GA
 ```
 # Creation des VM
 ## Sur T30.  
@@ -124,8 +124,8 @@ Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:05
 # Generation des fichiers de configuration
 Depuis la machine p-okd-svc-001. 
 ```bash
-mkdir /tmp/version45GA
-cd /tmp/version45GA
+mkdir /tmp/version46GA
+cd /tmp/version46GA
 wget https://github.com/openshift/okd/releases/download/4.5.0-0.okd-2020-07-14-153706-ga/openshift-install-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 tar zxvf openshift-install-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
 rm -f op*.gz
@@ -133,11 +133,11 @@ git clone https://github.com/blaurans/ocp4-metal-install
 cp ../install-config.yaml .
 ./openshift-install create manifests --dir .
 ./openshift-install create ignition-configs --dir .
-mkdir /var/www/html/version45GA
-cp -R ./* /var/www/html/version45GA
-chcon -R -t httpd_sys_content_t /var/www/html/version45GA/
-chown -R apache: /var/www/html/version45GA/
-chmod 755 /var/www/html/version45GA/
+mkdir /var/www/html/version46GA
+cp -R ./* /var/www/html/version46GA
+chcon -R -t httpd_sys_content_t /var/www/html/version46GA/
+chown -R apache: /var/www/html/version46GA/
+chmod 755 /var/www/html/version46GA/
 ```
 # Parametres de configuration des instances (tab au boot, ajouter a la suite de la ligne de boot
 ```

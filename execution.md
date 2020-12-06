@@ -142,8 +142,8 @@ chmod 755 /var/www/html/version46GA/
 # Parametres de configuration des instances (tab au boot, ajouter a la suite de la ligne de boot
 ```
 coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/fcos coreos.inst.ignition_url=http://192.168.22.1:8080/version45GA/bootstrap.ign
-coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'(GQ!bootstrqp:ign
-coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'(GQ!,qster:ign
+coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcosé coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!'version'§GQ!bootstrqp:ign
+coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcosé coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!okd'-!,qster:ign
 coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'(GQ!zorker:ign
 
 ```

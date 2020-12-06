@@ -147,3 +147,10 @@ coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_
 coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'(GQ!zorker:ign
 
 ```
+# Check config
+ssh -i /tmp/okd.key core@192.168.22.200 # Bootstrap 
+ssh -i /tmp/okd.key core@192.168.22.201 # Master 001 
+ssh -i /tmp/okd.key core@192.168.22.202 # Master 002
+ssh -i /tmp/okd.key core@192.168.22.203 # Master 003 
+ssh -i /tmp/okd.key core@192.168.22.204 # Worker 001
+sudo crictl ps | wc -l

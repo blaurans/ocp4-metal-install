@@ -1,4 +1,9 @@
 A executer quand la machine p-okd-svc-001 est déjà crée
+# Se connecter à un hôte hyper-v à distance
+```powershell
+Enter-PSSession hyperv.lauransad.local
+```
+
 # Preparation des hotes Hyper-V
 ```batch
 md c:\temp

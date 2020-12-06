@@ -50,7 +50,7 @@ $VMName = 'P-OKD-BOOT-001'
 $InstallMedia = 'C:\Temp\fedora-coreos-32.20201018.3.0-live.x86_64.iso'
 $Switch = 'OKD'
 New-VM -Name $VMName -MemoryStartupBytes 8GB -BootDevice VHD -NewVHDPath "C:\vm-machine\$VMName\$VMName.vhdx" -NewVHDSizeBytes 50GB -Path "C:\vm-machine\$VMName" -SwitchName $Switch
-Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 8GB -MinimumBytes 1GB
+Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 1 -MaximumBytes 16GB -MinimumBytes 1GB
 #Set-VMMemory -VMName $VMName -DynamicMemoryEnabled 0
 Set-VMProcessor -VMName $VMName -count 2
 Add-VMDvdDrive -VMName $VMName -Path $InstallMedia

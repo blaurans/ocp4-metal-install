@@ -136,8 +136,8 @@ Depuis la machine p-okd-svc-001.
 ```bash
 mkdir /tmp/version46GA
 cd /tmp/version46GA
-wget https://github.com/openshift/okd/releases/download/4.5.0-0.okd-2020-07-14-153706-ga/openshift-install-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
-tar zxvf openshift-install-linux-4.5.0-0.okd-2020-07-14-153706-ga.tar.gz
+wget https://github.com/openshift/okd/releases/download/4.6.0-0.okd-2020-12-12-135354/openshift-install-linux-4.6.0-0.okd-2020-12-12-135354.tar.gz
+tar zxvf openshift*
 rm -f op*.gz
 git clone https://github.com/blaurans/ocp4-metal-install
 cp ../install-config.yaml .

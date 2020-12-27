@@ -122,6 +122,15 @@ Set-VMBios $VMName -StartupOrder @("IDE","CD","Floppy", "LegacyNetworkAdapter" )
 Set-VMNetworkAdapter -VMName $VMName -StaticMacAddress 00:00:00:3E:3E:05
 
 ```
+# Changement de l'image fcos
+lien https://getfedora.org/coreos/download?tab=metal_virtualized&stream=stable  
+Ne pas oublier de charger la signature aussi  
+``` bash
+scp fcos4 root@192.168.38.138:/var/www/html/ocp4/fcos4
+scp fcos4.sig root@192.168.38.138:/var/www/html/ocp4/fcos4.sig
+```
+/var/www/html
+
 # Generation des fichiers de configuration
 Depuis la machine p-okd-svc-001. 
 ```bash
@@ -143,9 +152,9 @@ chmod 755 /var/www/html/version46GA/
 # Parametres de configuration des instances (tab au boot, ajouter a la suite de la ligne de boot
 ```
 coreos.inst.install_dev=sda coreos.inst.image_url=http://192.168.22.1:8080/ocp4/fcos coreos.inst.ignition_url=http://192.168.22.1:8080/version45GA/bootstrap.ign
-coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcosé coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'-GQ!bootstrqp:ign
-coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcosé coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'-GQ!,qster:ign
-coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcosé coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'-GQ!zorker:ign
+coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcos' coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'-GQ!bootstrqp:ign
+coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcos' coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'-GQ!,qster:ign
+coreos:inst:instqll°dev=sdq coreos:inst:i,qge°url=httpM!!&çé:&-_:éé:&M_à_à!ocp'!fcos' coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_à_à!version'-GQ!zorker:ign
 
 ```
 # Check config

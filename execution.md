@@ -143,7 +143,7 @@ git clone https://github.com/blaurans/ocp4-metal-install
 cp /root/install-config.yaml .
 ./openshift-install create manifests --dir .
 ./openshift-install create ignition-configs --dir .
-rm openshift-install
+rm -f openshift-install
 mkdir /var/www/html/version46GA
 cp -R ./* /var/www/html/version46GA
 chcon -R -t httpd_sys_content_t /var/www/html/version46GA/

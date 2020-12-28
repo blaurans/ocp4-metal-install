@@ -140,9 +140,10 @@ wget https://github.com/openshift/okd/releases/download/4.6.0-0.okd-2020-12-12-1
 tar zxvf openshift*
 rm -f op*.gz
 git clone https://github.com/blaurans/ocp4-metal-install
-cp ../install-config.yaml .
+cp /root/install-config.yaml .
 ./openshift-install create manifests --dir .
 ./openshift-install create ignition-configs --dir .
+rm openshift-install
 mkdir /var/www/html/version46GA
 cp -R ./* /var/www/html/version46GA
 chcon -R -t httpd_sys_content_t /var/www/html/version46GA/

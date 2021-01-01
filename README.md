@@ -667,3 +667,7 @@ coreos:inst:instqll°dev=sdq coreos:inst:ignition°url=httpM!!&çé:&-_:éé:&M_
    ```bash
    oc edit schedulers.config.openshift.io cluster
    ```
+   ## Troubleshooting Bootstrap doesn't go green
+   ``` bash
+   journalctl -b -f -u release-image.service -u bootkube.service
+   ```

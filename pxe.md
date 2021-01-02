@@ -90,4 +90,39 @@ firewall-cmd --add-port=69/udp --zone=internal --permanent    ## Port for TFTP
 firewall-cmd --add-port=69/tcp  --zone=internal --permanent  ## Port for TFTP
 firewall-cmd --reload  ## Apply rules
 
+``` bash
+dnf install podman
+podman run --privileged --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -f pxe
+```
+v0.7.2
+podman run --privileged --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:v0.6.0 download -f pxe
+
+
+
+pxelinux.cfg
+DEFAULT pxeboot
+TIMEOUT 20
+PROMPT 0
+LABEL pxeboot
+    KERNEL fedora-coreos-32.20200726.3.1-live-kernel-x86_64
+    APPEND initrd=fedora-coreos-32.20200726.3.1-live-initramfs.x86_64.img,fedora-coreos-32.20200726.3.1-live-rootfs.x86_64.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://192.168.1.101:8000/config.ign
+IPAPPEND 2
+
+
+
+fedora-coreos-33.20201201.3.0-live-initramfs.x86_64
+
+cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7
+cp /mnt/images/pxeboot/initrd.img  /var/lib/tftpboot/centos7
+
+http://192.168.22.1:8080/version45GA/bootstrap.ign
+
+
+/mybootdir/pxelinux.cfg/01-88-99-aa-bb-cc-dd
+/mybootdir/pxelinux.cfg/01-88-99-00-11-22-33
+/mybootdir/pxelinux.cfg/default
+
+it is important to use as file name starting with 01- then mac address in lowercase
 
